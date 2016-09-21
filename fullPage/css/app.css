@@ -175,6 +175,7 @@ body{
     transform: rotate(360deg);
     transition: all .7s ease .1s;
 }
+/*此处动画需要延迟一下，让上一个动画结束然后在动*/
 .section4 img.sport.animate{
     transform: rotate(360deg);
     transition: all .7s ease .8s;
