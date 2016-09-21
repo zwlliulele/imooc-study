@@ -1,0 +1,131 @@
+/**
+ * Created by zwl on 2016/9/21.
+ */
+function log(info) {
+    console.log(info)
+}
+$(function () {
+    initAnimateByCss3();
+});
+/**
+ * move.js的动画
+ * **/
+function initAnimateByMoveJs() {
+    $('#fullPage').fullpage({
+        verticalCentered: false,
+        //sectionsColor: ['aqua','crimson','green','darkviolet'],
+        anchors: ['page1', 'page2', 'page3', 'page4'],
+        navigation: true,
+        navigationTooltips: ['它，终于来了', '真正与你贴近的个人设备', '非同一般的精准计时', '在三个特点鲜明的系列中找到你的风格'],
+        //滚动到某一屏后产生的动画效果
+        afterLoad: function (link, index) {
+            switch (index) {
+                case 1:
+                    move('.section1 h1').scale(1.5).end();
+                    move('.section1 p').set('margin-top', '5%').end();
+                    break;
+                case 2:
+                    move('.section2 h1').scale(0.7).end();
+                    break;
+                case 3:
+                    move('.section3 h1').set('margin-left', '20%').end();
+                    move('.section3 p').set('margin-left', '20%').end();
+                    break;
+                case 4:
+                    move('.section4 img.primary').rotate(360).end(function () {
+                        move('.section4 img.sport').rotate(360).end(function () {
+                            move('.section4 img.edition').rotate(360).end(function () {
+                                move('.section4 h4.primary').scale(1.2).end(function () {
+                                    move('.section4 h4.sport').scale(1.2).end(function () {
+                                        move('.section4 h4.edition').scale(1.2).end();
+                                    });
+                                });
+                            });
+                        });
+                    });
+                    break;
+                default :
+                    break;
+            }
+        },
+        //离开某一屏后恢复到初始效果
+        onLeave: function (link, index) {
+            switch (index) {
+                case 1:
+                    move('.section1 h1').scale(1).end();
+                    move('.section1 p').set('margin-top', '800px').end();
+                    break;
+                case 2:
+                    move('.section2 h1').scale(1).end();
+                    break;
+                case 3:
+                    move('.section3 h1').set('margin-left', '-1500px').end();
+                    move('.section3 p').set('margin-left', '1500px').end();
+                    break;
+                case 4:
+                    move('.section4 img.primary').rotate(-360).end();
+                    move('.section4 img.sport').rotate(-360).end();
+                    move('.section4 img.edition').rotate(-360).end();
+                    move('.section4 h4.primary').scale(1).end();
+                    move('.section4 h4.sport').scale(1).end();
+                    move('.section4 h4.edition').scale(1).end();
+                    break;
+                default :
+                    break;
+            }
+        },
+    })
+}
+
+//css3做的动画
+function initAnimateByCss3() {
+    $('#fullPage').fullpage({
+        verticalCentered: false,
+        //sectionsColor: ['aqua','crimson','green','darkviolet'],
+        anchors: ['page1', 'page2', 'page3', 'page4'],
+        navigation: true,
+        navigationTooltips: ['它，终于来了', '真正与你贴近的个人设备', '非同一般的精准计时', '在三个特点鲜明的系列中找到你的风格'],
+        //滚动到某一屏后产生的动画效果
+        afterLoad: function (link, index) {
+            switch (index) {
+                case 1:
+                    $(".section1 p").addClass('s1-p-animate');
+                    $(".section1 h1").addClass('s1-h1-animate');
+                    break;
+                case 2:
+                    $(".section2 h1").addClass('s2-h1-animate');
+                    break;
+                case 3:
+                    $(".section3 h1,.section3 p").addClass('s3-animate');
+                    break;
+                case 4:
+                    $(".section4 img.primary,.section4 img.sport,.section4 img.edition").addClass("animate");
+                    $(".section4 h4.primary,.section4 h4.sport,.section4 h4.edition").addClass("animate");
+                    break;
+                default :
+                    break;
+            }
+        },
+        //离开某一屏后恢复到初始效果
+        onLeave: function (link, index) {
+            switch (index) {
+                case 1:
+                    $(".section1 p").removeClass('s1-p-animate');
+                    $(".section1 h1").removeClass('s1-h1-animate');
+                    break;
+                case 2:
+                    $(".section2 h1").removeClass('s2-h1-animate');
+                    break;
+                case 3:
+                    $(".section3 h1,.section3 p").removeClass('s3-animate');
+                    break;
+                case 4:
+                    $(".section4 img.primary,.section4 img.sport,.section4 img.edition").removeClass("animate");
+                    $(".section4 h4.primary,.section4 h4.sport,.section4 h4.edition").removeClass("animate");
+                    break;
+                default :
+                    break;
+            }
+        },
+    })
+}

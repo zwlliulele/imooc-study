@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/jquery.fullpage.css">
+</head>
+<style>
+    .red {
+        background-color: red
+    }
+
+    .blue {
+        background-color: blue
+    }
+
+    .orange {
+        background-color: orange
+    }
+
+    .fuchsia {
+        background-color: fuchsia
+    }
+
+    #fullMenu {
+        position: fixed;
+        top: 0;
+        z-index: 999;
+        background-color: #fff;
+    }
+</style>
+<body>
+<ul id="fullMenu">
+    <li data-menuanchor="page1" class="active">
+        <a href="#page1">1 Select</a>
+    </li>
+    <li data-menuanchor="page2">
+        <a href="#page2">2 Select</a>
+    </li>
+    <li data-menuanchor="page3">
+        <a href="#page3">3 Select</a>
+    </li>
+    <li data-menuanchor="page4">
+        <a href="#page4">4 Select</a>
+    </li>
+
+</ul>
+<div id="fullpage">
+    <div class="section red">
+        <div class="slide">11</div>
+        <div class="slide">12</div>
+    </div>
+    <div class="section blue">2</div>
+    <div class="section orange">3</div>
+    <div class="section fuchsia">4</div>
+</div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.fullpage.js"></script>
+<script>
+    function log(info) {
+        console.log(info)
+    }
+    $(function () {
+        $("#fullpage").fullpage({
+            slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],//背景色
+            anchors: ['page1', 'page2', 'page3', 'page4'],//锚点
+            continuousVertical: true,//滚动到底部或者头部平滑的过度到下一页
+            loopHorizontal: true,//左右滑块是否循环滚动
+            controlArrows: false,//左右导航的那个颜色块可以是颜色或者false
+            menu: "#fullMenu",//导航菜单
+            navigation: true,//是否显示右侧的小圆点
+            navigationPosition: "right",//小圆点位置
+//            navigationColor:"#fff",//小圆点颜色
+            navigationTooltips: ['page1', 'page2', 'page3', 'page4'],//鼠标移动上去小圆点提示
+            showActiveTooltip: true,//是否到每个页面自动显示小圆点提示
+            slidesNavigation: true,//是否显示左右滑块的小黑点导航
+            //scrollOverflow:true,//内容超过满屏后是否显示滚动条。如果是true就必须配合slimScroll插件配合，直接引入即可
+            //参数是锚链接和序号，序号行1开始
+            afterRender:function () {
+              //页面结构生成后，也可以说页面初始化完成后的函数
+            },
+            afterReSize:function () {
+              //浏览器窗口改变之后的回调
+            },
+            /**
+             * 某个section加载完的函数
+             * 参数是：anchorLink:当前锚节点，index:当前索引
+             * */
+            afterLoad: function (anchorLink, index) {
+                log(anchorLink)
+                log(index)
+            },
+            /**
+             * 离开某个section的函数
+             * 参数是当前页面index,目标页面index和滚动方向，up或者down,如果return false就会阻止页面滚动
+             * */
+            onLeave: function (index, nextIndex, direction) {
+                log(index)
+                log(nextIndex)
+                log(direction)
+            },
+            /**
+             * 当某个slide加载完成的函数
+             * 参数是参数是：anchorLink:当前锚节点，index:当前索引,slideIndex:当前silde索引，direction:移动方向，left或者right。如果return false就会阻止页面滚动
+             * */
+            afterSlideLoad: function (anchorLink,index,slideIndex,direction) {
+                log(anchorLink)
+                log(index)
+                log(slideIndex)
+                log(direction)
+            },
+            /**
+             * 离开某个slide的函数
+             * 参数是参数是：anchorLink:当前锚节点，index:当前索引,slideIndex:当前silde索引，direction:移动方向，left或者right。如果return false就会阻止页面滚动
+             * */
+            onSlideLeave: function (anchorLink,index,slideIndex,direction) {
+                log(anchorLink)
+                log(index)
+            }
+        });
+        /**
+         * 方法
+         */
+        // $.fn.fullpage.moveSectionDown();//向下
+//        moveSectionUp()	向上滚动
+//        moveSectionDown()	向下滚动
+//        moveTo(section, slide)	滚动到,注意 这里的section从第一页开始，而slide是从0开始
+//        moveSlideRight()	slide 向右滚动
+//        moveSlideLeft()	slide 向左滚动
+//        setAutoScrolling()	设置页面滚动方式，设置为 true 时自动滚动
+//        setAllowScrolling()	添加或删除鼠标滚轮/触控板控制
+//        setKeyboardScrolling()	添加或删除键盘方向键控制
+//        setScrollingSpeed()	定义以毫秒为单位的滚动速度
+//        reBuild();            重新计算布局一般是ajax改变数据之后需要重新计算
+//        destroy();            如果不带参数就是销毁方法而css保留，如果是all就全销毁
+    })
+    /**
+     * 回调函数
+     */
+</script>
+</html>
